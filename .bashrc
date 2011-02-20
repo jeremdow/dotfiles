@@ -12,4 +12,4 @@ alias ls='ls --color=auto'
 alias sudo='sudo '
 alias surf='surf -p'
 
-PS1='[\u@\h \W]\$ '
+PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] '
