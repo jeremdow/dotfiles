@@ -1,8 +1,0 @@
-background no
-out_to_console yes
-update_interval 2
-total_run_times 0
-use_spacer none
-
-TEXT
-$mem ${freq_g}GHz ${cpu}% ${upspeedf wlan0}KiB/${downspeedf wlan0}KiB/s ${time %F %H:%M} ${battery_short BAT1}
