@@ -9,6 +9,4 @@ export EDITOR="/usr/bin/vim"
 eval "$(dircolors -b)"
 alias ls='ls --color=auto'
 
-alias sudo='sudo '
-
-PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] '
+PS1='\[\e[1;31m\][\u@\h \W]\$\[\e[0m\] '
