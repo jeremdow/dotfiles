@@ -4,11 +4,11 @@
 " For multi-byte character support (CJK support, for example):
 "set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
        
-set tabstop=2       " Number of spaces that a <Tab> in the file counts for.
+set tabstop=4       " Number of spaces that a <Tab> in the file counts for.
  
-set shiftwidth=2    " Number of spaces to use for each step of (auto)indent.
+set shiftwidth=4    " Number of spaces to use for each step of (auto)indent.
  
-set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
+"set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
                     " Spaces are used in indents with the '>' and '<' commands
                     " and when 'autoindent' is on. To insert a real tab when
                     " 'expandtab' is on, use CTRL-V <Tab>.
@@ -80,3 +80,6 @@ set mouse=a         " Enable the use of the mouse.
 filetype plugin indent on
 syntax on
 au BufRead,BufNewFile *.module set filetype=php
+au filetype php set tabstop=4
+au filetype php set shiftwidth=4
+au filetype php set expandtab
