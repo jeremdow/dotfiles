@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/srv/http/superstar/sites'
+let g:netrw_dirhist_2='/srv/http/superstar'
+let g:netrw_dirhist_3='/srv/http/superstar/themes'
+let g:netrw_dirhist_4='/srv/http/superstar/themes/bluemarine'
+let g:netrw_dirhist_5='/srv/http/superstar/sites/all/themes/superstar'
+let g:netrw_dirhist_6='/home/jeremdow/.git'
+let g:netrw_dirhist_7='/home/jeremdow'
+let g:netrw_dirhist_8='/home/jeremdow/gitosis-admin/keydir'
