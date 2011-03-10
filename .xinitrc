@@ -6,6 +6,7 @@
 
 xset r rate 240 24
 urxvtd -q -f -o
-unclutter -grab -root &
+numlockx
+unclutter -root &
 conky | while read -r; do xsetroot -name "$REPLY"; done &
-exec dwm
+exec dbus-launch --exit-with-session ck-launch-session dwm
