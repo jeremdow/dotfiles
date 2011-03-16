@@ -82,4 +82,4 @@ syntax on
 au BufRead,BufNewFile *.module set filetype=php
 au filetype php,html,css set tabstop=2
 au filetype php,html,css set shiftwidth=2
-au filetype php,html,css set expandtab
+au filetype php,html,css,rc set expandtab
