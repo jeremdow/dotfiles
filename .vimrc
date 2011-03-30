@@ -79,7 +79,7 @@ set mouse=a         " Enable the use of the mouse.
 
 filetype plugin indent on
 syntax on
-au BufRead,BufNewFile *.module,*.inc set filetype=php
+au BufRead,BufNewFile *.module,*.inc,*.install set filetype=php
 au BufRead,BufNewFile *.local,*.tpl set filetype=rc
 au filetype php,html,css set tabstop=2
 au filetype php,html,css set shiftwidth=2
