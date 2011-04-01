@@ -77,10 +77,13 @@ set mouse=a         " Enable the use of the mouse.
  
 " set directory=~/.vim/backup,/tmp
 
+nnoremap <F3> :noh<return>
+
 filetype plugin indent on
 syntax on
 au BufRead,BufNewFile *.module,*.inc,*.install set filetype=php
-au BufRead,BufNewFile *.local,*.tpl set filetype=rc
+au BufRead,BufNewFile *.local set filetype=rc
+au BufRead,BufNewFile *.tpl set filetype=html
 au filetype php,html,css set tabstop=2
 au filetype php,html,css set shiftwidth=2
 au filetype php,html,css,rc set expandtab
