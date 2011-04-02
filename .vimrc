@@ -8,7 +8,7 @@ set tabstop=4       " Number of spaces that a <Tab> in the file counts for.
  
 set shiftwidth=4    " Number of spaces to use for each step of (auto)indent.
  
-"set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
+set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
                     " Spaces are used in indents with the '>' and '<' commands
                     " and when 'autoindent' is on. To insert a real tab when
                     " 'expandtab' is on, use CTRL-V <Tab>.
@@ -86,4 +86,3 @@ au BufRead,BufNewFile *.local set filetype=rc
 au BufRead,BufNewFile *.tpl set filetype=html
 au filetype php,html,css set tabstop=2
 au filetype php,html,css set shiftwidth=2
-au filetype php,html,css,rc set expandtab
