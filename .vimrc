@@ -1,86 +1,48 @@
 " .vimrc
 " See: http://vimdoc.sourceforge.net/htmldoc/options.html for details
 
-" For multi-byte character support (CJK support, for example):
-"set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
-       
-set tabstop=4       " Number of spaces that a <Tab> in the file counts for.
- 
-set shiftwidth=4    " Number of spaces to use for each step of (auto)indent.
- 
-set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
-                    " Spaces are used in indents with the '>' and '<' commands
-                    " and when 'autoindent' is on. To insert a real tab when
-                    " 'expandtab' is on, use CTRL-V <Tab>.
- 
-set smarttab        " When on, a <Tab> in front of a line inserts blanks
-                    " according to 'shiftwidth'. 'tabstop' is used in other
-                    " places. A <BS> will delete a 'shiftwidth' worth of space
-                    " at the start of the line.
- 
-set showcmd         " Show (partial) command in status line.
- 
-set showmatch       " When a bracket is inserted, briefly jump to the matching
-                    " one. The jump is only done if the match can be seen on the
-                    " screen. The time to show the match can be set with
-                    " 'matchtime'.
- 
-set hlsearch        " When there is a previous search pattern, highlight all
-                    " its matches.
- 
-set incsearch       " While typing a search command, show immediately where the
-                    " so far typed pattern matches.
- 
-set ignorecase      " Ignore case in search patterns.
- 
-set smartcase       " Override the 'ignorecase' option if the search pattern
-                    " contains upper case characters.
- 
-set backspace=indent,eol,start " Influences the working of <BS>, <Del>, CTRL-W
-                    " and CTRL-U in Insert mode. This is a list of items,
-                    " separated by commas. Each item allows a way to backspace
-                    " over something.
- 
-set autoindent      " Copy indent from current line when starting a new line
-                    " (typing <CR> in Insert mode or when using the "o" or "O"
-                    " command).
- 
-set smartindent     " Do smart autoindenting when starting a new line. Works
-                    " for C-like programs, but can also be used for other
-                    " languages.
- 
-"set textwidth=79    " Maximum width of text that is being inserted. A longer
-                    " line will be broken after white space to get this width.
- 
-set formatoptions=c,q,r,t " This is a sequence of letters which describes how
-                    " automatic formatting is to be done.
-                    "
-                    " letter    meaning when present in 'formatoptions'
-                    " ------    ---------------------------------------
-                    " c         Auto-wrap comments using textwidth, inserting
-                    "           the current comment leader automatically.
-                    " q         Allow formatting of comments with "gq".
-                    " r         Automatically insert the current comment leader
-                    "           after hitting <Enter> in Insert mode. 
-                    " t         Auto-wrap text using textwidth (does not apply
-                    "           to comments)
- 
-set ruler           " Show the line and column number of the cursor position,
-                    " separated by a comma.
- 
-set background=dark " When set to "dark", Vim will try to use colors that look
-                    " good on a dark background. When set to "light", Vim will
-                    " try to use colors that look good on a light background.
-                    " Any other value is illegal.
- 
-set mouse=a         " Enable the use of the mouse.
- 
-" set directory=~/.vim/backup,/tmp
+" Uncomment the next line to make Vim more Vi-compatible
+"set compatible
 
-nnoremap <F3> :noh<return>
+" Vim5 and later versions support syntax highlighting. Uncommenting the
+" following enables syntax highlighting by default.
+if has("syntax")
+  syntax on
+endif
 
-filetype plugin indent on
-syntax on
+" If using a dark background within the editing area and syntax highlighting
+" turn on this option as well
+set background=dark
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+"if has("autocmd")
+"  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"endif
+
+" Uncomment the following to have Vim load indentation rules and plugins
+" according to the detected filetype.
+if has("autocmd")
+  filetype plugin indent on
+endif
+
+" The following are commented out as they cause vim to behave a lot
+" differently from regular Vi. They are highly recommended though.
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set ignorecase		" Do case insensitive matching
+set smartcase		" Do smart case matching
+set incsearch		" Incremental search
+set autowrite		" Automatically save before commands like :next and :make
+set hidden             " Hide buffers when they are abandoned
+set mouse=a		" Enable mouse usage (all modes)
+
+" Source a global configuration file if available
+if filereadable("/etc/vim/vimrc.local")
+  source /etc/vim/vimrc.local
+endif
+
+" Custom formatting
 au BufRead,BufNewFile *.module,*.inc,*.install set filetype=php
 au BufRead,BufNewFile *.local set filetype=rc
 au BufRead,BufNewFile *.tpl set filetype=html
