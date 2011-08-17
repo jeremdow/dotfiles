@@ -10,5 +10,6 @@ eval "$(dircolors -b)"
 alias ls='ls --color=auto'
 
 alias sudo='sudo '
+alias drush='php ~/drush/drush.php'
 
 PS1='[\u@\h \W]\$ '
