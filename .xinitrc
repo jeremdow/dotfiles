@@ -7,6 +7,12 @@
 xset r rate 240 24
 urxvtd -q -f -o
 numlockx
-unclutter -root &
-conky | while read -r; do xsetroot -name "$REPLY"; done &
-exec dbus-launch --exit-with-session ck-launch-session dwm
+
+if [[ $1 == 'gnome' ]]
+then
+	exec ck-launch-session gnome-session
+else
+	unclutter -root &
+	conky | while read -r; do xsetroot -name "$REPLY"; done &
+	exec dbus-launch --exit-with-session ck-launch-session dwm
+fi
