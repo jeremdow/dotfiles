@@ -14,6 +14,5 @@ alias ls='ls --color=auto'
 
 alias sudo='sudo '
 alias drush='php ~/drush/drush.php'
-alias tx='transmission-cli'
 
 PS1='[\u@\h \W]\$ '
