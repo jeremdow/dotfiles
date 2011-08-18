@@ -36,6 +36,7 @@ set incsearch		" Incremental search
 set autowrite		" Automatically save before commands like :next and :make
 set hidden		" Hide buffers when they are abandoned
 set mouse=a		" Enable mouse usage (all modes)
+set hlsearch		" When there is a previous search pattern, highlight all matches.
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
@@ -46,5 +47,6 @@ endif
 au BufRead,BufNewFile *.module,*.inc,*.install set filetype=php
 au BufRead,BufNewFile *.local set filetype=rc
 au BufRead,BufNewFile *.tpl set filetype=html
-au filetype php,html,css set tabstop=2
-au filetype php,html,css set shiftwidth=2
+au filetype php,html,css,javascript,rc set expandtab
+au filetype php,html,css,javascript set tabstop=2
+au filetype php,html,css,javascript set shiftwidth=2
