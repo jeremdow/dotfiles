@@ -47,6 +47,6 @@ endif
 au BufRead,BufNewFile *.module,*.inc,*.install set filetype=php
 au BufRead,BufNewFile *.local set filetype=rc
 au BufRead,BufNewFile *.tpl set filetype=html
-au filetype php,html,css,javascript,rc set expandtab
+au filetype php,html,css,javascript,bash,rc set expandtab
 au filetype php,html,css,javascript set tabstop=2
 au filetype php,html,css,javascript set shiftwidth=2
