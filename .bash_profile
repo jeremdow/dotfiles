@@ -1,3 +1,7 @@
+#
+# ~/.bash_profile
+#
+
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 eval `keychain --eval --agents ssh id_rsa`
 
