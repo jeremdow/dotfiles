@@ -1,3 +1,6 @@
+#
+# ~/.bashrc
+#
 
 # Check for an interactive session
 [ -z "$PS1" ] && return
@@ -10,5 +13,6 @@ eval "$(dircolors -b)"
 alias ls='ls --color=auto'
 
 alias sudo='sudo '
+alias drush='php ~/drush/drush.php'
 
 PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] '
