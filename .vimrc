@@ -1,6 +1,11 @@
 " .vimrc
 " See: http://vimdoc.sourceforge.net/htmldoc/options.html for details
 
+" Source a global configuration file if available
+if filereadable("/etc/vimrc")
+  source /etc/vimrc
+endif
+
 " Uncomment the next line to make Vim more Vi-compatible
 "set compatible
 
@@ -37,11 +42,6 @@ set autowrite		" Automatically save before commands like :next and :make
 set hidden		" Hide buffers when they are abandoned
 set mouse=a		" Enable mouse usage (all modes)
 set hlsearch		" When there is a previous search pattern, highlight all matches.
-
-" Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
 
 " Custom formatting
 au BufRead,BufNewFile *.module,*.inc,*.install set filetype=php
