@@ -2,8 +2,8 @@
 # ~/.bashrc
 #
 
-# Check for an interactive session
-[ -z "$PS1" ] && return
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
 PATH=$PATH:$HOME/bin
 export LC_COLLATE="POSIX"
