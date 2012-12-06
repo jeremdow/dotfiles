@@ -53,3 +53,7 @@ au BufRead,BufNewFile *.tpl set filetype=html
 au filetype php,html,css,javascript,bash,rc set expandtab
 au filetype php,html,css,javascript set tabstop=2
 au filetype php,html,css,javascript set shiftwidth=2
+
+" Crosh Ctrl-w wincmd workarounds
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-k> :wincmd k<CR>
