@@ -53,3 +53,7 @@ au BufRead,BufNewFile *.tpl set filetype=html
 au filetype php,html,css,javascript,bash,rc set expandtab
 au filetype php,html,css,javascript set tabstop=2
 au filetype php,html,css,javascript set shiftwidth=2
+
+command Thtml :%!tidy -q -i -utf8 -wrap 0 -html
+command Txml  :%!tidy -q -i -utf8 -wrap 0 -xml
+command Thtml5 :%!tidy -q -i -utf8 -wrap 0 --tidy-mark no --new-blocklevel-tags article,header,footer,figure,figcaption --new-inline-tags video,audio,canvas,ruby,rt,rp --break-before-br yes --sort-attributes alpha --vertical-space yes 2> /dev/null
