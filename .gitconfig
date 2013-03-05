@@ -1,29 +1,26 @@
 [user]
-  name = Jeremiah Dow
-  email = jeremdow@gmail.com
-
+	name = Jeremiah Dow
+	email = jeremdow@gmail.com
 [color]
-  diff = auto
-  status = auto
-  branch = auto
-  interactive = auto
-  ui = auto
-
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = auto
 [color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
-  meta = blue
-  frag = yellow
-  old = white
-  new = cyan bold
-
+	meta = blue
+	frag = yellow
+	old = white
+	new = cyan bold
 [color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
-
+	added = yellow
+	changed = green
+	untracked = cyan
 [push]
-  default = simple
+	default = simple
+[pager]
+	diff = false
