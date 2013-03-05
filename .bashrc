@@ -7,14 +7,13 @@
 
 PATH=$PATH:$HOME/bin
 export LC_COLLATE="POSIX"
-export EDITOR="/usr/bin/vim"
+export EDITOR="vim"
+export PAGER="vimpager"
 
 eval "$(dircolors -b)"
 alias ls='ls --color=auto'
 
+# Pass user aliases to sudo
 alias sudo='sudo '
-#(pass user aliases to sudo)
-
-alias drush='php ~/drush/drush.php'
 
 PS1='[\u@\h \W]\$ '
