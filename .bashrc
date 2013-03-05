@@ -8,7 +8,6 @@
 PATH=$PATH:$HOME/bin
 export LC_COLLATE="POSIX"
 export EDITOR="vim"
-export PAGER="vimpager"
 
 eval "$(dircolors -b)"
 alias ls='ls --color=auto'
