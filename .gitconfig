@@ -22,5 +22,5 @@
 	untracked = cyan
 [push]
 	default = simple
-[pager]
-	diff = false
+#[pager]
+	#diff = false
