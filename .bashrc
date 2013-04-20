@@ -31,7 +31,6 @@ if which tmux 2>&1 >/dev/null; then
 
     # when quitting tmux, try to attach
     while test -z $TMUX; do
-        #tmux attach || break
-        tmux attach || exit
+        tmux attach || break
     done
 fi
