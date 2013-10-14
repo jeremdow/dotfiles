@@ -2,11 +2,8 @@
 # ~/.bash_profile
 #
 
-[[ -f ~/.bashrc ]] && . ~/.bashrc
-eval `keychain --eval --agents ssh id_rsa`
+cat /etc/motd
 
-if [ -z "$DISPLAY" ] && [ $(tty) = /dev/tty1 ]
-then
-    xinit > /dev/null 2>&1
-    exit
-fi
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+# Leaves a second sshd and bash process running
+# eval `keychain --eval --agents ssh id_rsa`
