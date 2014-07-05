@@ -94,6 +94,10 @@ set sidescrolloff=5	" Same horizontally, if 'nowrap' is set.
 set display+=lastline   " As much as possible of the last line in a window will be displayed.
 set autoread		" When a file is changed outside of Vim, automatically read it again.
 
+" Visually wrap long lines
+set wrap
+set linebreak
+
 "set list 		" Show tabs and trailing spaces.
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8')
@@ -199,3 +203,4 @@ au filetype php,html,css,javascript set shiftwidth=2
 au filetype nginx set expandtab
 au filetype nginx set tabstop=4
 au filetype nginx set shiftwidth=4
+au filetype nginx set cindent
