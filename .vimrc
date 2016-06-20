@@ -44,11 +44,12 @@ colorscheme solarized
 
 " Additional filetypes
 au BufRead,BufNewFile *.module,*.inc,*.install set filetype=php
+au BufRead,BufNewFile *.tpl,*.twig set filetype=html
 
 " Indentation overrides
-au filetype php,html,css,javascript set expandtab
-au filetype php,html,css,javascript set tabstop=2
-au filetype php,html,css,javascript set shiftwidth=2
+au filetype php,html,css,javascript,yaml set expandtab
+au filetype php,html,css,javascript,yaml set tabstop=2
+au filetype php,html,css,javascript,yaml set shiftwidth=2
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")

@@ -1,6 +1,6 @@
 [user]
   name = Jeremiah Dow
-  email = jeremdow@gmail.com
+  email = jdow@cheng-tsui.com
 
 [color]
   diff = auto
@@ -17,7 +17,7 @@
 [color "diff"]
   meta = blue bold
   frag = yellow
-  old = black bold
+  old = normal dim
   new = cyan bold
 
 [color "status"]
@@ -25,4 +25,4 @@
   changed = green
   untracked = cyan
 [push]
-  default = simple
+	default = simple
