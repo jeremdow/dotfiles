@@ -25,6 +25,6 @@
   changed = green
   untracked = cyan
 [push]
-  default = simple
+	default = simple
 [core]
-  editor = /usr/bin/vim
+	editor = /usr/bin/vim

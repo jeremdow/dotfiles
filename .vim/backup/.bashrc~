@@ -26,6 +26,8 @@ man() {
 }
 
 PS1='\u@\h \W \$ '
+#PROMPT_COMMAND='printf "\033k$(hostname -s)\033\\"'
+#PROMPT_COMMAND='printf "\033]0;""$PWD""\007" | sed "s|$HOME|~|"'
 
 alias sudo='sudo -E'
 alias vim='nvim'

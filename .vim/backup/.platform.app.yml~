@@ -1,0 +1,29 @@
+name: slapp
+type: nodejs:4.4
+
+web:
+  commands:
+    start: "PM2_HOME=/app/run pm2 start build/index.html --no-daemon"
+      #in this setup you will find your application stdout and stderr in /app/run/logs
+    locations:
+      "/build/static":
+        passthru: false
+      root: "build"
+        # Whether to allow files not matching a rule or not.
+      allow: true
+      rules:
+        '\.png$':
+          allow: true
+          expires: -1
+dependencies:
+  nodejs:
+    pm2: "^0.15.10"
+mounts:
+  "/run": "shared:files/run"
+  disk: 512
+hooks:
+    build: |
+      npm install
+      npm run build
+      npm run styleguide-build
+
