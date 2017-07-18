@@ -23,6 +23,9 @@ if has("syntax")
   syntax enable
 endif
 
+" Use the OS clipboard
+set clipboard=unnamed
+
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
 set background=dark
@@ -43,12 +46,13 @@ set background=dark
 colorscheme solarized
 
 " Additional filetypes
-au BufRead,BufNewFile *.module,*.inc,*.install set filetype=php
+au BufRead,BufNewFile *.php,*.module,*.inc,*.install set filetype=php
 au BufRead,BufNewFile *.tpl,*.twig set filetype=html
 au BufRead,BufNewFile *.make set filetype=yaml
 
 " Syntastic
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_css_checkers = ['stylelint']
 
 " Indentation overrides
 au filetype php,html,xhtml,css,javascript,json,yaml,markdown,make set expandtab
@@ -114,3 +118,6 @@ set backupdir=~/.vim/backup
 :map s :Squash<CR>
 :map r :Reword<CR>
 :map c :Pick<CR>
+
+" Prettier
+nnoremap gp :silent %!prettier --stdin --trailing-comma es5 --single-quote<CR>
