@@ -1,0 +1,4 @@
+#npm project session
+splitw -h -p 40 npm run test
+splitw -v -p 20 npm start
+selectp -t 0
