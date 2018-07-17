@@ -1,14 +1,21 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/jeremiah/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/jeremiah.dow/.oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+#ZSH_THEME="agnoster-custom"
 ZSH_THEME="agnoster-custom"
 
-DEFAULT_USER="jeremdow"
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -38,7 +45,7 @@ DEFAULT_USER="jeremdow"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+#DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -52,14 +59,14 @@ DEFAULT_USER="jeremdow"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-# User configuration
-
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
+plugins=(
+  git
+)
 
 source $ZSH/oh-my-zsh.sh
+
+# User configuration
+DEFAULT_USER="jeremdow"
 
 # color setup for ls on OS X / FreeBSD:
 export CLICOLOR=1
@@ -67,6 +74,8 @@ export CLICOLOR=1
 export LSCOLORS=""
 # activate color-completion
 zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
+
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -82,7 +91,7 @@ zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -93,14 +102,7 @@ zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim='nvim'
-#alias sudo='sudo -E'
+alias python='python3'
 
-# Acquia Dev Desktop (drush)
-#export PATH="$PATH:/Applications/DevDesktop/drush"
-
-# Homebrew
-export PATH="/usr/local/sbin:$PATH"
-
-# Automatically added by Platform.sh CLI installer
-export PATH="/Users/jeremiah/.platformsh/bin:$PATH"
-. '/Users/jeremiah/.platformsh/shell-config.rc' 2>/dev/null
+# Enable Autocomplete for Drupal Console
+source "$HOME/.console/console.rc" 2>/dev/null
