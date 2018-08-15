@@ -37,3 +37,9 @@
 [submodule ".vim/bundle/vim-jsx"]
 	path = .vim/bundle/vim-jsx
 	url = https://github.com/mxw/vim-jsx.git
+[submodule ".zfunctions/pure"]
+	path = .zfunctions/pure
+	url = git@github.com:sindresorhus/pure.git
+[submodule ".zsh/pure"]
+	path = .zsh/pure
+	url = git@github.com:sindresorhus/pure.git
