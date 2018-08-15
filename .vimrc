@@ -8,54 +8,31 @@ endif
 
 " Uncomment the next line to make Vim more Vi-compatible
 "set compatible
-set nocompatible              " be iMproved, required
-filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Specify a directory for plugins
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.local/share/nvim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Make sure you use single quotes
+Plug 'tpope/vim-sensible'
+Plug 'altercation/vim-colors-solarized'
 
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-sensible'
+" A pretty statusline, bufferline integration
+Plug 'itchyny/lightline.vim'
+Plug 'bling/vim-bufferline'
 
-Plugin 'vim-syntastic/syntastic'
+" Git wrapper inside Vim, sign column in the gutter
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
-Plugin 'altercation/vim-colors-solarized'
+"Plug 'vim-syntastic/syntastic'
+Plug 'vim-vdebug/vdebug', { 'on': 'VdebugStart' }
 
-Plugin 'vim-vdebug/vdebug'
+Plug 'w0rp/ale'
+"Plug 'maximbaz/lightline-ale'
 
-Plugin 'Raimondi/delimitMate'
-Plugin 'othree/html5.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'pangloss/vim-javascript'
-Plugin 'elzr/vim-json'
-Plugin 'mxw/vim-jsx'
-
-"Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-git'
-Plugin 'tpope/vim-repeat'
-
-" All" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" Initialize plugin system
+call plug#end()
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the
 " following enables syntax highlighting by default.
@@ -88,7 +65,64 @@ set background=dark
 " g:solarized_visibility=   "normal"|   "high" or "low"
 " ------------------------------------------------
 "let g:solarized_termcolors=256
+let g:solarized_visibility="low"
 colorscheme solarized
+
+" Lightline
+let g:lightline = {
+  \ 'colorscheme': 'solarized',
+  \ 'active': {
+  \   'left': [
+  \     ['mode', 'paste'],
+  \     ['gitbranch', 'readonly'],
+  \     ['filename']
+  \   ],
+  \   'right': [
+  \     ['linter'],
+  \     ['lineinfo'],
+  \     ['fileformat', 'fileencoding', 'filetype'],
+  \    ]
+  \ },
+  \ 'inactive' : {
+  \   'right': [
+  \     ['lineinfo', 'percent'],
+  \     ['fileformat', 'fileencoding', 'filetype'],
+  \   ]
+  \ },
+  \ 'component_function': {
+  \   'gitbranch': 'LightlineFugitive',
+  \   'filename': 'LightlineFilename',
+  \   'linter': 'LinterStatus'
+  \ }
+\ }
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+function! LightlineFugitive() abort
+    if expand('%:t') !~? 'Tagbar' && exists('*fugitive#head')
+        let l:branch = fugitive#head()
+        return l:branch !=# '' ? '± '.l:branch : ''
+    endif
+    return ''
+endfunction
+
+" TODO: This is unused, remove it? -JMD
+function! LightlineFilename()
+    let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+    let modified = &modified ? ' +' : ''
+    return filename . modified
+endfunction
 
 " Additional filetypes
 au BufRead,BufNewFile *.php,*.module,*.inc,*.install,*.theme set filetype=php
@@ -96,13 +130,33 @@ au BufRead,BufNewFile *.tpl,*.twig set filetype=html
 au BufRead,BufNewFile *.make set filetype=yaml
 
 " Syntastic
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_css_checkers = ['stylelint']
+"let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_css_checkers = ['stylelint']
+"let g:syntastic_php_checkers = ['php', 'phpcs']
+"let g:syntastic_php_phpcs_args='--standard=Drupal'
+
+" Asynchronous Lint Engine
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_sign_column_always = 1
+
+" Set this variable to 1 to fix files when you save them.
+"let g:ale_fix_on_save = 1
+
+" Enable completion where available.
+let g:ale_completion_enabled = 1
+
+" Drupal/Coder
+let g:ale_php_phpcs_use_global = 1
+let g:ale_php_phpcs_standard = 'Drupal'
+let b:ale_fixers = {'php': ['phpcbf']}
+let g:ale_php_phpcbf_use_global = 1
+let g:ale_php_phpcbf_standard = 'Drupal'
 
 " Indentation overrides
-au filetype php,html,xhtml,css,javascript,json,yaml,markdown,make set expandtab
-au filetype php,html,xhtml,css,javascript,json,yaml,markdown,make set tabstop=2
-au filetype php,html,xhtml,css,javascript,json,yaml,markdown,make set shiftwidth=2
+au filetype php,html,xhtml,css,scss,javascript,json,yaml,markdown,make set expandtab
+au filetype php,html,xhtml,css,scss,javascript,json,yaml,markdown,make set tabstop=2
+au filetype php,html,xhtml,css,scss,javascript,json,yaml,markdown,make set shiftwidth=2
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -121,14 +175,15 @@ if has("autocmd")
 	\ | exe "normal! g'\"" | endif
 
   " automatically reload vimrc when it's saved
-  au BufWritePost .vimrc so ~/.vimrc
+  "au BufWritePost .vimrc so ~/.vimrc
 
 endif " has("autocmd")
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
-set showcmd		" Show (partial) command in status line.
+set noshowcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
+set noshowmode		" Mode information is displayed in the statusline.
 set ignorecase		" Do case insensitive matching
 set smartcase		" Do smart case matching
 "set incsearch		" Incremental search
@@ -150,14 +205,16 @@ set colorcolumn=+2	" Highlight columns, set to number or +/- 'textwidth'.
 
 " Undo persistence
 set undofile
-set undodir=~/.vim/undo
+set undodir=~/.local/share/nvim/undo
+set undolevels=500                      " max undos stored
+set undoreload=10000                    " buffer stored undos
 
 " Make a backup before overwriting a file.
 set writebackup
 " The backup is removed after the file was successfully written,
 " unless the 'backup' option is also on.
-set backup
-set backupdir=~/.vim/backup
+"set backup
+set backupdir=~/.local/share/nvim/backup
 
 " Vim-git mappings
 :map f :Fixup<CR>

@@ -1,3 +1,0 @@
-[submodule "slapp"]
-	path = slapp
-	url = git@bitbucket.org:chengtsui/slapp.git
