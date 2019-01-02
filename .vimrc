@@ -1,17 +1,21 @@
 " .vimrc
+" TODO: Get rid of this old boilerplate
 " See: http://vimdoc.sourceforge.net/htmldoc/options.html for details
 
+" TODO: Do this Neovim way (or not at all).
 " Source a global configuration file if available
 if filereadable("/etc/vimrc")
   source /etc/vimrc
 endif
 
+" TODO: Does nvim even support this?
 " Uncomment the next line to make Vim more Vi-compatible
 "set compatible
 
 " Specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/plugged')
+" Run :PlugInstall | :PlugUpgrade to update plugins.
 
 " Make sure you use single quotes
 Plug 'tpope/vim-sensible'
@@ -25,11 +29,16 @@ Plug 'bling/vim-bufferline'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-"Plug 'vim-syntastic/syntastic'
 Plug 'vim-vdebug/vdebug', { 'on': 'VdebugStart' }
+" TODO: I need a way to call ConfigVdebug() on load?
+" or use option { 'for': 'php'} and add config in autocmd...
 
+"Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
 "Plug 'maximbaz/lightline-ale'
+
+" Is there anything lighter/better than this?
+Plug 'lumiliet/vim-twig'
 
 " Initialize plugin system
 call plug#end()
@@ -124,16 +133,19 @@ function! LightlineFilename()
     return filename . modified
 endfunction
 
-" Additional filetypes
-au BufRead,BufNewFile *.php,*.module,*.inc,*.install,*.theme set filetype=php
-au BufRead,BufNewFile *.tpl,*.twig set filetype=html
-au BufRead,BufNewFile *.make set filetype=yaml
-
 " Syntastic
 "let g:syntastic_javascript_checkers = ['eslint']
 "let g:syntastic_css_checkers = ['stylelint']
 "let g:syntastic_php_checkers = ['php', 'phpcs']
 "let g:syntastic_php_phpcs_args='--standard=Drupal'
+
+" Vdebug
+function! ConfigVdebug()
+  let g:vdebug_options['break_on_open'] = 0
+  let g:vdebug_options['continuous_mode'] = 1
+endfunction
+
+command VdebugConfig call ConfigVdebug()
 
 " Asynchronous Lint Engine
 let g:ale_sign_error = '>>'
@@ -153,12 +165,17 @@ let b:ale_fixers = {'php': ['phpcbf']}
 let g:ale_php_phpcbf_use_global = 1
 let g:ale_php_phpcbf_standard = 'Drupal'
 
+" Additional filetypes
+au BufRead,BufNewFile *.php,*.module,*.inc,*.install,*.theme set filetype=php
+au BufRead,BufNewFile *.tpl set filetype=html
+au BufRead,BufNewFile *.make set filetype=yaml
+
 " Indentation overrides
-au filetype php,html,xhtml,css,scss,javascript,json,yaml,markdown,make set expandtab
-au filetype php,html,xhtml,css,scss,javascript,json,yaml,markdown,make set tabstop=2
-au filetype php,html,xhtml,css,scss,javascript,json,yaml,markdown,make set shiftwidth=2
+au filetype json set tabstop=4
+au filetype json set shiftwidth=4
 
 " Only do this part when compiled with support for autocommands.
+" TODO: Which is always? The above should be in here, or condition removed.
 if has("autocmd")
 
   " Enable file type detection.
@@ -193,6 +210,11 @@ set mouse=a		" Enable mouse usage (all modes)
 set hlsearch		" When there is a previous search pattern, highlight all matches.
 
 set list 		" Show tabs and trailing spaces.
+
+" I'm not hiring him. He uses spaces not tabs.
+set expandtab
+set tabstop=2
+set shiftwidth=2
 
 " Folding by syntax
 "set foldmethod=syntax
