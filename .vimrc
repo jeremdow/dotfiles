@@ -19,7 +19,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Make sure you use single quotes
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-commentary'
 Plug 'altercation/vim-colors-solarized'
+
+" pangloss/vim-javascript is optional
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 
 " A pretty statusline, bufferline integration
 Plug 'itchyny/lightline.vim'
