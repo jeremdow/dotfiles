@@ -33,6 +33,7 @@ Plug 'bling/vim-bufferline'
 " Git wrapper inside Vim, sign column in the gutter
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'zivyangll/git-blame.vim'
 
 Plug 'vim-vdebug/vdebug', { 'on': 'VdebugStart' }
 " TODO: I need a way to call ConfigVdebug() on load?
@@ -251,3 +252,6 @@ set backupdir=~/.local/share/nvim/backup
 
 " Prettier
 nnoremap gp :silent %!prettier --stdin --trailing-comma es5 --single-quote<CR>
+
+" Git blame
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
