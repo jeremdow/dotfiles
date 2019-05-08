@@ -1,6 +1,7 @@
 [user]
   name = Jeremiah Dow
   email = jeremiah.dow@pfhq.com
+  signingkey = 164169283BD507FC
 
 [color]
   diff = auto
@@ -29,3 +30,5 @@
   default = simple
 [core]
   editor = nvim
+[commit]
+  gpgsign = true
