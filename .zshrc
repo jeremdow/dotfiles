@@ -32,6 +32,16 @@ export CLICOLOR=1
 # activate color-completion
 zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
 
+# For my own and others sanity
+# %F => color dict
+# %f => reset color
+# %~ => current path
+# %* => time
+# %n => username
+# %m => shortname host
+# %(?..) => prompt conditional - %(condition.true.false)
+PROMPT='%F{blue}%~%f %# '
+
 ## pager
 export PAGER='less'
 export LESS='-R'
@@ -63,22 +73,15 @@ bindkey '^?' backward-delete-char       # [Backspace] - delete backward
 bindkey '^h' backward-delete-char
 bindkey "${terminfo[kdch1]}" delete-char            # [Delete] - delete forward
 
-# sindresorhus/pure
-autoload -U promptinit; promptinit
-
-# optionally define some options
-PURE_PROMPT_SYMBOL='$'
-
-prompt pure
-
 alias vim='nvim'
 alias python='python3'
 
+# Prompt for password on terminal when code signing
+export GPG_TTY=$(tty)
+
 # Enable Autocomplete for Drupal Console
 source "$HOME/.console/console.rc" 2>/dev/null
-
 export PATH="$PATH:$HOME/.composer/vendor/bin"
-export XDEBUG_CONFIG="idekey=xdebug"
 
 # Acquia BLT
 function blt() {
@@ -103,6 +106,25 @@ function blt() {
   fi
 }
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-  . "/usr/local/opt/nvm/nvm.sh"
+# Add every binary that requires nvm, npm or node to run to an array of node globals
+NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+NODE_GLOBALS+=("node")
+NODE_GLOBALS+=("nvm")
+
+# Lazy-loading nvm + npm on node globals call
+load_nvm () {
+  export NVM_DIR=~/.nvm
+  [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
+}
+
+# Making node global trigger the lazy loading
+for cmd in "${NODE_GLOBALS[@]}"; do
+  eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+done
+
+# https://getcomposer.org/doc/articles/troubleshooting.md#memory-limit-errors
+export COMPOSER_MEMORY_LIMIT=-1
+
+export VAULT_GITHUB_TOKEN="0682c0b92815f3bf9584c4da832ff0e5db7d3064"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
