@@ -20,6 +20,16 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Make sure you use single quotes
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+
+Plug 'Raimondi/delimitMate'
+let g:delimitMate_expand_cr = 2
+
+Plug 'alvan/vim-closetag'
+let g:closetag_filenames = "*.php,*.twig,*.js,*.jsx"
+
 Plug 'altercation/vim-colors-solarized'
 
 " pangloss/vim-javascript is optional
@@ -33,18 +43,29 @@ Plug 'bling/vim-bufferline'
 " Git wrapper inside Vim, sign column in the gutter
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'zivyangll/git-blame.vim'
 
-Plug 'vim-vdebug/vdebug', { 'on': 'VdebugStart' }
+" Git blame on current line in status bar
+Plug 'zivyangll/git-blame.vim'
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
+" TODO: Remove unsused plugins/shortcuts
+
+" Plug 'vim-vdebug/vdebug', { 'on': 'VdebugStart' }
 " TODO: I need a way to call ConfigVdebug() on load?
 " or use option { 'for': 'php'} and add config in autocmd...
 
 "Plug 'vim-syntastic/syntastic'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 "Plug 'maximbaz/lightline-ale'
 
+Plug 'prettier/vim-prettier'
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#exec_cmd_async = 1
+
+let g:prettier#config#single_quote = 'true'
+
 " Is there anything lighter/better than this?
-Plug 'lumiliet/vim-twig'
+Plug 'lumiliet/vim-twig', { 'for': 'twig' }
 
 " Initialize plugin system
 call plug#end()
@@ -146,20 +167,34 @@ endfunction
 "let g:syntastic_php_phpcs_args='--standard=Drupal'
 
 " Vdebug
-function! ConfigVdebug()
-  let g:vdebug_options['break_on_open'] = 0
-  let g:vdebug_options['continuous_mode'] = 1
-endfunction
+" function! ConfigVdebug()
+"   let g:vdebug_options['break_on_open'] = 0
+"   let g:vdebug_options['continuous_mode'] = 1
+" endfunction
 
-command VdebugConfig call ConfigVdebug()
+" command VdebugConfig call ConfigVdebug()
 
 " Asynchronous Lint Engine
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_sign_column_always = 1
 
+"   ~always keep the signcolumn open!!
+set signcolumn=yes
+:highlight SignColumn ctermbg=black
+
+" let g:ale_fixers = {
+"       \ 'php': ['phpcbf'],
+"       \ 'javascript': ['prettier'],
+"       \ 'css': ['prettier'],
+"       \}
+" let g:ale_linters_explicit = 1
+
 " Set this variable to 1 to fix files when you save them.
-"let g:ale_fix_on_save = 1
+" let g:ale_fix_on_save = 1
+
+" let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5 --print-width 80'
+" let g:ale_javascript_prettier_use_local_config = 1
 
 " Enable completion where available.
 let g:ale_completion_enabled = 1
@@ -167,7 +202,6 @@ let g:ale_completion_enabled = 1
 " Drupal/Coder
 let g:ale_php_phpcs_use_global = 1
 let g:ale_php_phpcs_standard = 'Drupal'
-let b:ale_fixers = {'php': ['phpcbf']}
 let g:ale_php_phpcbf_use_global = 1
 let g:ale_php_phpcbf_standard = 'Drupal'
 
@@ -176,9 +210,10 @@ au BufRead,BufNewFile *.php,*.module,*.inc,*.install,*.theme set filetype=php
 au BufRead,BufNewFile *.tpl set filetype=html
 au BufRead,BufNewFile *.make set filetype=yaml
 
-" Indentation overrides
-au filetype json set tabstop=4
-au filetype json set shiftwidth=4
+" " Indentation overrides
+" au filetype json set tabstop=4
+" au filetype json set shiftwidth=4
+" TODO: Why is this here?
 
 " Only do this part when compiled with support for autocommands.
 " TODO: Which is always? The above should be in here, or condition removed.
@@ -198,7 +233,7 @@ if has("autocmd")
 	\ | exe "normal! g'\"" | endif
 
   " automatically reload vimrc when it's saved
-  "au BufWritePost .vimrc so ~/.vimrc
+  " au BufWritePost .vimrc so ~/.vimrc
 
 endif " has("autocmd")
 
@@ -245,13 +280,7 @@ set writebackup
 set backupdir=~/.local/share/nvim/backup
 
 " Vim-git mappings
-:map f :Fixup<CR>
-:map s :Squash<CR>
-:map r :Reword<CR>
-:map c :Pick<CR>
-
-" Prettier
-nnoremap gp :silent %!prettier --stdin --trailing-comma es5 --single-quote<CR>
-
-" Git blame
-nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
+" :map f :Fixup<CR>
+" :map s :Squash<CR>
+" :map r :Reword<CR>
+" :map c :Pick<CR>

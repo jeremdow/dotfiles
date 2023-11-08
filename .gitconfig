@@ -17,10 +17,10 @@
   remote = green
 
 [color "diff"]
-  meta = blue bold
+  meta = blue
   frag = yellow
   old = normal dim
-  new = cyan bold
+  new = normal bold
 
 [color "status"]
   added = yellow
@@ -30,5 +30,15 @@
   default = simple
 [core]
   editor = nvim
+	excludesfile = /Users/jeremiah.dow/.gitignore
 [commit]
   gpgsign = true
+[branch]
+  autosetupmerge = always
+[pull]
+  rebase = false
+[log]
+  abbrevCommit = true
+[format]
+  ; pretty = oneline
+  ; pretty = format:%C(auto)%h %d %s %Cblue%cn %C(auto)%C(dim)%ar
