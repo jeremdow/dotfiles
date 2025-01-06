@@ -1,7 +1,7 @@
 [user]
   name = Jeremiah Dow
   email = jeremiah.dow@pfhq.com
-  signingkey = 164169283BD507FC
+	signingkey = 2E508CDDD63F8EE8
 
 [color]
   diff = auto
@@ -29,10 +29,8 @@
 [push]
   default = simple
 [core]
-  editor = nvim
-	excludesfile = /Users/jeremiah.dow/.gitignore
-[commit]
-  gpgsign = true
+  editor = vim
+  excludesfile = ~/.gitignore
 [branch]
   autosetupmerge = always
 [pull]
@@ -42,3 +40,5 @@
 [format]
   ; pretty = oneline
   ; pretty = format:%C(auto)%h %d %s %Cblue%cn %C(auto)%C(dim)%ar
+[commit]
+	gpgSign = true

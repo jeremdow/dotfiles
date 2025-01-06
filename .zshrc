@@ -35,7 +35,7 @@ setopt share_history          # share command history data
 # color setup for ls on OS X / FreeBSD:
 export CLICOLOR=1
 # activate color-completion
-zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
+# zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
 
 # For my own and others sanity
 # %F => color dict
@@ -77,8 +77,8 @@ bindkey '^?' backward-delete-char       # [Backspace] - delete backward
 bindkey '^h' backward-delete-char
 bindkey "${terminfo[kdch1]}" delete-char            # [Delete] - delete forward
 
-alias vim='nvim'
-alias python='python3'
+# alias vim='nvim'
+# alias python='python3'
 
 # Prompt for password on terminal when code signing
 export GPG_TTY=$(tty)
@@ -132,8 +132,10 @@ function blt() {
 
 # Use Aliases instead of NVM
 # https://notiz.dev/blog/how-to-manage-multiple-node-versions-on-mac
-alias node14='export PATH="/usr/local/opt/node@14/bin:$PATH"'
-alias node16='export PATH="/usr/local/opt/node@16/bin:$PATH"'
+alias node14='export PATH="/opt/homebrew/opt/node@14/bin:$PATH"'
+alias node16='export PATH="/opt/homebrew/opt/node@16/bin:$PATH"'
+alias node18='export PATH="/opt/homebrew/opt/node@18/bin:$PATH"'
+alias node20='export PATH="/opt/homebrew/opt/node@20/bin:$PATH"'
 
 # https://getcomposer.org/doc/articles/troubleshooting.md#memory-limit-errors
 export COMPOSER_MEMORY_LIMIT=-1
@@ -147,9 +149,7 @@ export COMPOSER_MEMORY_LIMIT=-1
 #   vault login -method=github token=$GITHUB_TOKEN
 # }
 
-export GITHUB_TOKEN=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
 
-export VAULT_GITHUB_TOKEN=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
 export VAULT_SKIP_VERIFY=true
 export AWS_REGION=us-east-1
 
@@ -257,13 +257,17 @@ alias cde_prod_eks_operator='login-eks prod-cde true'
 #     | sed -e 's/$/;/'
 # }
 
-export PATH="/user/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
-export PATH="$PATH:./node_modules/.bin"
-export PATH="/usr/local/opt/php@7.4/bin:$PATH"
-export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
-export PATH="$PATH:/usr/local/opt/node@14/bin"
+# export PATH="/user/local/bin:$PATH"
+# export PATH="/usr/local/sbin:$PATH"
+# export PATH="/usr/local/opt/ruby/bin:$PATH"
+# export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+# export PATH="$PATH:./node_modules/.bin"
+# export PATH="/usr/local/opt/php@7.4/bin:$PATH"
+# export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
+# export PATH="$PATH:/usr/local/opt/node@14/bin"
+
+export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
+export PATH="/Users/jeremdow/bin:$PATH"
 
 # zprof
+export NODE_EXTRA_CA_CERTS=/opt/homebrew/etc/ca-certificates/cert.pem
